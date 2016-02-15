@@ -1,0 +1,23 @@
+{
+  "name": "windoServer",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Justin <jdeanwaite@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jdeanwaite/windo-server",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.5.0",
+    "angular": "1.5.0"
+  }
+}

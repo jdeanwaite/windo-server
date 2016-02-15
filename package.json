@@ -1,5 +1,5 @@
 {
-  "name": "windowServer",
+  "name": "windoServer",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,5 +15,19 @@
     "morgan": "~1.3.0",
     "passport": "^0.2.1",
     "serve-favicon": "~2.1.3"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdeanwaite/windo-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdeanwaite/windo-server/issues"
+  },
+  "homepage": "https://github.com/jdeanwaite/windo-server#readme",
+  "description": ""
 }

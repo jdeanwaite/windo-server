@@ -1,32 +1,40 @@
-// read up on http://www.restapitutorial.com/lessons/httpmethods.html
-
-var express = require('express');
-var meetups = require('./api/meetups');
-var path = require('path');
-
-var router = express.Router();
+// ---------------------------------------------------------------------------//
+// API ROUTER
+// ---------------------------------------------------------------------------//
+// The API router sets up all the endpoints for the app. The endpoints arent
+// creeated in this file, while the implementations of such endpoints will be
+// found under routes/app/*.js.
+//
+// For good information on how to design the endpoints or the API as a whole,
+// refer to: read up on http://www.restapitutorial.com/lessons/httpmethods.html
+//
+// Testing can be done using Postman: https://www.getpostman.com
+// ---------------------------------------------------------------------------//
+// Dependencies
+var express           = require('express');
+var meetups           = require('./api/meetups');
+var path              = require('path');
+var router            = express.Router();
+var users             = require('./api/users');
 
 module.exports = function(app) {
 
-  router.get('/', function(req, res) {
-    console.log('test');
-    res.send('success');
-  });
+// ---------------------------------------------------------------------------//
+// User Endpoints
+// ---------------------------------------------------------------------------//
+  router.get   ('/users/'   , users.getAll);
+  router.post  ('/users/'   , users.insert);
+  router.put   ('/users/:id', users.update);
+  router.delete('/users/:id', users.remove);
 
-  /* GET meetup list*/
-  router.get('/meetups/', meetups.getAll);
+// ---------------------------------------------------------------------------//
+// Meet-up Endpoints
+// ---------------------------------------------------------------------------//
+  router.get   ('/meetups/'   , meetups.getAll);
+  router.post  ('/meetups/'   , meetups.create);
+  router.put   ('/meetups/:id', meetups.update);
+  router.delete('/meetups/:id', meetups.delete);
 
-  /* POST meetup create */
-  router.post('/meetups/', meetups.create);
-
-  /* PUT meetup update */
-  // who can update this? Make sure that if they arent the creator that
-  // they cant maliciously update the meetup.
-  router.put('/meetups/:id', meetups.update);
-
-  /* DELETE meetup delete */
-  router.delete('/meetups/:id', function(req, res) {
-  });
-
+// The result of this module will be the router.
   return router;
 };
