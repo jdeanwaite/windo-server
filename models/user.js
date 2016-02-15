@@ -4,7 +4,7 @@ var Schema            = mongoose.Schema;
 
 // Creates a User Schema. This will be the basis of how user data is stored.
 var UserSchema = new Schema({
-    username: {type: String, required: true},
+    handle:     {type: String, required: true},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now}
 });
