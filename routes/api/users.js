@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------//
-// User API Implementations
+// USER API IMPLEMENTATIONS
 // ---------------------------------------------------------------------------//
 // This file contains the implementations for the User endpoints of the API
 // router.

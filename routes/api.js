@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------//
 // API ROUTER
 // ---------------------------------------------------------------------------//
-// The API router sets up all the endpoints for the app. The endpoints arent
+// The API router sets up all the endpoints for the API. The endpoints are
 // creeated in this file, while the implementations of such endpoints will be
 // found under routes/app/*.js.
 //
