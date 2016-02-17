@@ -14,12 +14,12 @@ var Schema            = mongoose.Schema;
 
 // Creates a Meetup Schema. This will be the basis of how meetup data is stored.
 var MeetupSchema = new Schema({
-    owner:      { type: String, required: true  },
+    _ownerId:   { type: String, required: true  },
     name:       { type: String, required: true  },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
-    fromDate:   { type: Date, required: true    },
-    toDate:     { type: Date, required: true    },
+    fromDate:   { type: Date, required: false   },
+    toDate:     { type: Date, required: false   },
     invitees:   { type: Array    }
 });
 

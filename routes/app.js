@@ -29,7 +29,7 @@ module.exports = function(app) {
   // });
 
   router.get('/templates/dashboard', function(req, res) {
-    res.render('test');
+    res.render('dashboard');
   });
 
 // The result of this module will be the router.
