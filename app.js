@@ -20,7 +20,7 @@ var app             = express();
 // Mongo and Express Setup
 // ---------------------------------------------------------------------------//
 // Connects to the MongoDB server
-mongoose.connect("mongodb://localhost/windoServer");
+mongoose.connect("mongodb://localhost/windoServer-dev");
 
 // Jade view engine setup
 app.set('views', path.join(__dirname, 'views'));
