@@ -10,26 +10,14 @@ var router          = express.Router();
 
 module.exports = function(app) {
 
-// ---------------------------------------------------------------------------//
-// Login Endpoint(s)
-// ---------------------------------------------------------------------------//
-  router.get('/login', function(req, res) {
-    // Login page
-    console.log('rendering login page.')
-    res.render('login');
+  router.get('/:page', function(req, res) {
+    res.set( { 'content-type': 'text/html; charset=utf-8' } )
+       .sendFile('/Users/justin/Documents/projects/windo-server/public/app/index.html' );
   });
 
-// ---------------------------------------------------------------------------//
-// Dashboard Endpoint(s)
-// ---------------------------------------------------------------------------//
-  // router.get('/', function(req, res) {
-  //   // Login page if not logged in, dashboard if logged in.
-  //   console.log('rendering dashboard.');
-  //   res.render('dashboard');
-  // });
-
-  router.get('/templates/dashboard', function(req, res) {
-    res.render('dashboard');
+// Template routing
+  router.get('/templates/:template', function(req, res) {
+    res.render(req.params.template);
   });
 
 // The result of this module will be the router.

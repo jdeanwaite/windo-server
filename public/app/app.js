@@ -2,7 +2,8 @@
 // controllers and services.
 var app = angular.module('windoApp', [
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'ngMessages'
 ]);
 
 angular.module('windoApp').config(function ($mdThemingProvider) {

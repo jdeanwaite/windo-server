@@ -21,20 +21,20 @@ angular.module('windoApp')
         //   }
         // }
       })
-      // .state('create', {
-      //   url: '/create',
-      //   template: '<create layout="column" layout-fill></create>',
-      //   resolve: {
-      //     currentUser: ($q) => {
-      //       if (!Meteor.userId()) {
-      //         return $q.reject('AUTH_REQUIRED');
-      //       }
-      //       else {
-      //         return $q.resolve();
-      //       }
-      //     }
-      //   }
-      // })
+      .state('create', {
+        url: '/app/create/',
+        template: '<create layout="column" layout-fill></create>',
+        resolve: {
+          // currentUser: ($q) => {
+          //   if (!Meteor.userId()) {
+          //     return $q.reject('AUTH_REQUIRED');
+          //   }
+          //   else {
+          //     return $q.resolve();
+          //   }
+          // }
+        }
+      })
       // .state('event', {
       //   url: '/event/:eventId',
       //   template: '<event layout="column" layout-fill></event>',
