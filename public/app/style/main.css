@@ -1,7 +1,7 @@
-html, body {
-  background-color: #212121;
-}
+md-content  {
+  -webkit-transform: translate3d(0, 0, 0);
+}  /* fixes disappearing bug in iOS angular/material#4477 */
 
-/*.md-content {
-  background-color: blue;
-}*/
+.create-form, .create-form md-input-container{
+  width: 100%;
+}

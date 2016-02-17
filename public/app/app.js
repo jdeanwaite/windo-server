@@ -8,7 +8,10 @@ var app = angular.module('windoApp', [
 
 angular.module('windoApp').config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-  .dark()
   .primaryPalette('blue')
   .accentPalette('grey');
 });
+
+angular.module('windoApp').controller(function($scope) {
+  console.log('hi');
+})

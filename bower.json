@@ -22,5 +22,8 @@
     "jquery": "^2.2.0",
     "angular-material": "^1.0.5",
     "angular-messages": "^1.5.0"
+  },
+  "resolutions": {
+    "angular-material": "^1.0.5"
   }
 }

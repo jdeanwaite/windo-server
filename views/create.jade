@@ -9,11 +9,11 @@ md-toolbar(class="main-toolbar md-whiteframe-2dp")
     md-button(class="md-icon-button md-accent" aria-label="Account")
       md-icon(class="material-icons") info_outline
 
-md-content(class="md-whiteframe-1dp" layout="column" layout-align="start center")
+md-content(layout="column" class="md-padding" flex)
+  md-chips(ng-model="create.invitees" readonly="false" placeholder="Search for friends" secondary-placeholder="Search for friends")
+    md-chip-template
+      strong {{$chip}}
   form(name="createForm" class="create-form" layout="column" layout-align="start center" ng-submit="create.submitForm();")
-    md-chips(style="width: 100%" ng-model="create.invitees" readonly="false" placeholder="Search for friends" secondary-placeholder="Search for friends")
-      md-chip-template
-        strong {{$chip}}
     br
     md-input-container
       label Event Name
@@ -24,7 +24,6 @@ md-content(class="md-whiteframe-1dp" layout="column" layout-align="start center"
         div(ng-message="minlength") That's too short!
         
     input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;")
-
-  div(flex)
-span(flex)
-md-button(ng-disabled="createForm.$invalid" style="height: 60px;" class="md-raised md-primary" ng-click="create.submitForm();") Create
+  
+  span(flex)
+  md-button(ng-disabled="createForm.$invalid" style="height: 60px;" class="md-raised md-primary" ng-click="create.submitForm();") Create

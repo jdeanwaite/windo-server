@@ -7,6 +7,7 @@ angular.module('windoApp').directive('dashboard', function () {
     controller: function ($http) {
       var vm = this;
       vm.meetups = [];
+      vm.invitees=[];
 
       $http.get('/api/v0/meetups/')
       .then(function (response) {
