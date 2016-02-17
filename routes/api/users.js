@@ -20,7 +20,7 @@ module.exports = {
 
 // ---------------------------------------------------------------------------//
 // Users: Get all
-// Retrieves a list of all the users and sends them to the user.
+// Retrieves a list of all the users and sends them to the client.
 // ---------------------------------------------------------------------------//
   getAll: (req, res) => {
     console.log('retrieving all users');

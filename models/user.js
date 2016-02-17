@@ -1,4 +1,12 @@
-// Pulls Mongoose dependency for creating schemas
+// ---------------------------------------------------------------------------//
+// USER MODEL
+// ---------------------------------------------------------------------------//
+// This module contains the User model. The user model is comprised of
+//  - handle: The user's handle
+//  - created_at: The date and time the user was created.
+//  - updated_at: The date and time of the last update.
+// ---------------------------------------------------------------------------//
+// Dependencies
 var mongoose          = require('mongoose');
 var Schema            = mongoose.Schema;
 

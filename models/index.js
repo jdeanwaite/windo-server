@@ -6,8 +6,10 @@
 // the individual model files if only one is desired.
 // ---------------------------------------------------------------------------//
 // Dependencies
-var user = require('./user');
+var meetup          = require('./meetup');
+var user            = require('./user');
 
 module.exports = {
+  Meetup: meetup,
   User: user
 }

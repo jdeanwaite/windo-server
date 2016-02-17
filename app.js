@@ -35,8 +35,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Setup for public/static elements
+// Use for public/static elements
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Use BowerComponents
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // ---------------------------------------------------------------------------//
 // Route Setup

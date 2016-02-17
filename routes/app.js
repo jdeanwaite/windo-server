@@ -22,10 +22,14 @@ module.exports = function(app) {
 // ---------------------------------------------------------------------------//
 // Dashboard Endpoint(s)
 // ---------------------------------------------------------------------------//
-  router.get('/', function(req, res) {
-    // Login page if not logged in, dashboard if logged in.
-    console.log('rendering dashboard.');
-    res.render('dashboard');
+  // router.get('/', function(req, res) {
+  //   // Login page if not logged in, dashboard if logged in.
+  //   console.log('rendering dashboard.');
+  //   res.render('dashboard');
+  // });
+
+  router.get('/templates/dashboard', function(req, res) {
+    res.render('test');
   });
 
 // The result of this module will be the router.

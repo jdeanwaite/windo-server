@@ -1,27 +1,114 @@
+// ---------------------------------------------------------------------------//
+// MEETUP API IMPLEMENTATIONS
+// ---------------------------------------------------------------------------//
+// This file contains the implementations for the Meetup endpoints of the API
+// router.
+// ---------------------------------------------------------------------------//
+// Dependencies
+var mongoose         = require('mongoose');
+var Meetup           = require('../../models').Meetup;
+
 module.exports = {
-  /* GET meetup list*/
+
+// ---------------------------------------------------------------------------//
+// Meetups: Get all
+// Retrieves a list of all the meetups and sends them to the client.
+// TODO:
+// - get Meetup info from session and return list of all meetups
+// - figure out default max number of meetups to return.
+// - allow for query of max number to return or base on dates.
+// ---------------------------------------------------------------------------//
   getAll: function(req, res) {
-    //TODO: get user info from session and return list of all meetups
-    //TODO: figure out default max number of meetups to return.
-    //TODO: allow for query of max number to return or base on dates.
+    console.log('retrieving all meetups');
+    Meetup.find({}, function(err, docs) {
+      if (err) {
+        res.status(400);
+        return res.send(err);
+      }
+
+      res.status(200);
+      res.json(docs);
+    });
   },
 
-  /* POST meetup create */
-  create: function(req, res) {
-    //TODO: validate meetup object
-    //TODO: insert into database.
+// ---------------------------------------------------------------------------//
+// Meetups: Insert
+// Inserts a new meetup into the database. Sends the new doc, or err if exists.
+// ---------------------------------------------------------------------------//
+  insert: (req, res) => {
+    console.log('saving new meetup: ', req.body);
+    var newMeetup = new Meetup(req.body);
+
+    newMeetup.save(function(err, meetupDoc) {
+      console.log('done', meetupDoc);
+      if (err) {
+        res.status(400);
+        return res.send(err);
+      }
+
+      res.status(200);
+      res.json(meetupDoc);
+    });
   },
 
-  /* PUT meetup update */
-  // who can update this? Make sure that if they arent the creator that
-  // they cant maliciously update the meetup.
-  update: function(req, res) {
-    //TODO: validate updated meetup
-    //TODO: update meetup in database.
+// ---------------------------------------------------------------------------//
+// Meetups: Update
+// Updates the given meetup document. If the meetup is not found then it returns
+// a 404, if it is successful then it returns a 200 and sends the new meetup
+// document to the client.
+// TODO:
+// - who can update this? Make sure that if they arent the creator that
+//   they cant maliciously update the meetup.
+// -
+// ---------------------------------------------------------------------------//
+  update: (req, res) => {
+    console.log('updating meetup ' + req.params.id + 'with:', req.body);
+    Meetup.findOne({ _id: req.params.id }, function(err, doc) {
+      if (err) {
+        res.status(400);
+        return res.send(err);
+      }
+
+      if (!doc) {
+        res.status(404);
+        return res.send('Meetup not found');
+      }
+
+      doc.name     = req.body.name;
+      doc.fromDate = req.body.fromDate;
+      doc.toDate   = req.body.toDate;
+      doc.invitees = req.body.invitees;
+      doc.save(function(err, newDoc) {
+        if (err) {
+          res.status(400);
+          return res.send(err);
+        }
+
+        console.log('successfully updated:', newDoc);
+        res.status(200);
+        res.json(newDoc);
+      })
+    });
   },
 
-  /* DELETE meetup delete */
-  delete: function(req, res) {
-    //TODO: remove meetup from database
+// ---------------------------------------------------------------------------//
+// Meetups: Remove
+// Removes a meetup from the database. Returns err if one exists.
+// ---------------------------------------------------------------------------//
+  remove: (req, res) => {
+    console.log('removing meetup: ', req.params.id);
+    User.findOneAndRemove({ _id: req.params.id }, (err, doc) => {
+      if (err) {
+        res.status(400);
+        return res.send(err);
+      }
+      if (!doc) {
+        res.status(404);
+        return res.send("meetup not found");
+      }
+      res.status(200);
+      res.send('success');
+    });
   }
+
 }

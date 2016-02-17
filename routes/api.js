@@ -31,9 +31,9 @@ module.exports = function(app) {
 // Meet-up Endpoints
 // ---------------------------------------------------------------------------//
   router.get   ('/meetups/'   , meetups.getAll);
-  router.post  ('/meetups/'   , meetups.create);
+  router.post  ('/meetups/'   , meetups.insert);
   router.put   ('/meetups/:id', meetups.update);
-  router.delete('/meetups/:id', meetups.delete);
+  router.delete('/meetups/:id', meetups.remove);
 
 // The result of this module will be the router.
   return router;
