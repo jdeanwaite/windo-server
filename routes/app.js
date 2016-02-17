@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   router.get('/:page', function(req, res) {
     res.set( { 'content-type': 'text/html; charset=utf-8' } )
-       .sendFile('/Users/justin/Documents/projects/windo-server/public/app/index.html' );
+       .sendFile(path.join(__dirname, '..', 'public/app/index.html'));
   });
 
 // Template routing
