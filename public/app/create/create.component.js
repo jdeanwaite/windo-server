@@ -1,7 +1,7 @@
 angular.module('windoApp').directive('create', function () {
   return {
     restrict: 'E',
-    templateUrl: '/app/templates/create',
+    templateUrl: '/templates/create.html',
     controllerAs: 'create',
     controller: function ($mdMedia, $state) {
       var vm = this;

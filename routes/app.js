@@ -15,11 +15,6 @@ module.exports = function(app) {
        .sendFile(path.join(__dirname, '..', 'public/app/index.html'));
   });
 
-// Template routing
-  router.get('/templates/:template', function(req, res) {
-    res.render(req.params.template);
-  });
-
 // The result of this module will be the router.
   return router;
 };

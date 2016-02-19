@@ -18,7 +18,7 @@ module.exports = {
 // - figure out default max number of meetups to return.
 // - allow for query of max number to return or base on dates.
 // ---------------------------------------------------------------------------//
-  getAll: function(req, res) {
+  getAll: (req, res) => {
     console.log('retrieving all meetups');
     Meetup.find({}, function(err, docs) {
       if (err) {
