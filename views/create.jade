@@ -1,0 +1,29 @@
+md-toolbar(class="main-toolbar md-whiteframe-2dp")
+  div(class="md-toolbar-tools" layout-align="start center")
+    md-button(ui-sref="dashboard" class="md-icon-button md-accent" aria-label="Menu")
+      md-icon(class="material-icons") close
+    span(flex)
+    h2
+      span Create Event
+    span(flex)
+    md-button(class="md-icon-button md-accent" aria-label="Account")
+      md-icon(class="material-icons") info_outline
+
+md-content(layout="column" class="md-padding" flex)
+  md-chips(ng-model="create.invitees" readonly="false" placeholder="Search for friends" secondary-placeholder="Search for friends")
+    md-chip-template
+      strong {{$chip}}
+  form(name="createForm" class="create-form" layout="column" layout-align="start center" ng-submit="create.submitForm();")
+    br
+    md-input-container
+      label Event Name
+      input(name="eventName" class="" ng-model="create.eventName" required md-maxlength="24" minlength="4")
+      div(ng-messages="createForm.eventName.$error" ng-show="createForm.eventName.$dirty")
+        div(ng-message="required") This is required!
+        div(ng-message="md-maxlength") That's too long!
+        div(ng-message="minlength") That's too short!
+        
+    input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;")
+  
+  span(flex)
+  md-button(ng-disabled="createForm.$invalid" style="height: 60px;" class="md-raised md-primary" ng-click="create.submitForm();") Create

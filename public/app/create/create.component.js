@@ -8,6 +8,7 @@ angular.module('windoApp').directive('create', function () {
 
       vm.invitees = [];
       vm.eventName = "";
+      vm.test = vm.eventName;
       vm.fromDate = new Date();
       vm.toDate = new Date();
       vm.toDate.setDate(vm.fromDate.getDate() + 7);
