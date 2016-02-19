@@ -1,9 +1,8 @@
 angular.module('windoApp').directive('dashboard', function () {
   return {
     restrict: 'E',
-    templateUrl: '/app/templates/dashboard',
+    templateUrl: '/templates/dashboard.html',
     controllerAs: 'dashboard',
-    // controller: function ($scope, $reactive, $mdMedia, $state) {
     controller: function ($http) {
       var vm = this;
       vm.meetups = [];
