@@ -2,6 +2,10 @@ md-content  {
   -webkit-transform: translate3d(0, 0, 0);
 }  /* fixes disappearing bug in iOS angular/material#4477 */
 
-.create-form, .create-form md-input-container{
+.full-width-form, .full-width-form md-input-container{
   width: 100%;
+}
+
+.login-card {
+   width: 38%;
 }

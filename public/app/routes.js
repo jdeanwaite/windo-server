@@ -23,8 +23,8 @@ angular.module('windoApp')
       })
       .state('create', {
         url: '/app/create/',
-        template: '<create layout="column" layout-fill></create>',
-        resolve: {
+        template: '<create layout="column" layout-fill></create>'//,
+      //   resolve: {
           // currentUser: ($q) => {
           //   if (!Meteor.userId()) {
           //     return $q.reject('AUTH_REQUIRED');
@@ -33,7 +33,21 @@ angular.module('windoApp')
           //     return $q.resolve();
           //   }
           // }
-        }
+      //   }
+      })
+      .state('login', {
+         url: '/app/login/',
+         template: '<login layout="column" layout-fill></login>'//,
+         // resolve: {
+         //
+         // }
+      })
+      .state('register', {
+         url: '/app/register/',
+         template: '<register layout="column" layout-fill></register>'//,
+         // resolve: {
+         //
+         // }
       })
       // .state('event', {
       //   url: '/event/:eventId',

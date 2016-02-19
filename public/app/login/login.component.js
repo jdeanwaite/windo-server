@@ -1,10 +1,12 @@
 angular.module('windoApp').directive('login', function () {
   return {
     restrict: 'E',
-    templateUrl: '/app/templates/dashboard',
-    controllerAs: 'dashboard',
+    templateUrl: '/templates/login.html',
+    controllerAs: 'login',
     controller: function ($http) {
+      var vm = this;
 
+      
 
 
 
