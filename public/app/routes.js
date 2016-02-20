@@ -50,6 +50,13 @@ angular.module('windoApp')
          //
          // }
       })
+      .state('confirmation', {
+         url: '/app/register/confirmation',
+         template: '<confirmation layout="column" layout-fill></confirmation>'//,
+         // resolve: {
+         //
+         // }
+      })
       // .state('event', {
       //   url: '/event/:eventId',
       //   template: '<event layout="column" layout-fill></event>',

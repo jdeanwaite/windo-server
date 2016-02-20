@@ -11,9 +11,11 @@ var bodyParser      = require('body-parser');
 var config          = require('./config');
 var cookieParser    = require('cookie-parser');
 var express         = require('express');
+var session         = require('express-session');
 var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var mongoose        = require('mongoose');
+var passport        = require('passport');
 var path            = require('path');
 var app             = express();
 
@@ -36,6 +38,11 @@ app.use(cookieParser());
 
 // Use for public/static elements
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Use for passport
+app.use(session({ secret: '' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 // Use BowerComponents
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
