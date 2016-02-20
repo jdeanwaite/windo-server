@@ -6,11 +6,28 @@ angular.module('windoApp').directive('register', function () {
     controller: function ($http, $scope) {
       var vm = this;
 
-      vm.firstname = "";
-      vm.lastname = "";
+      vm.firstName = "";
+      vm.lastName = "";
       vm.email = "";
       vm.password = "";
       vm.password2 = "";
+
+      vm.submit = function() {
+        var user = {
+          firstName: vm.firstName,
+          lastName: vm.lastName,
+          email: vm.email,
+          password: vm.password
+        }
+
+        $http.post("/api/v0/users", user)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+      }
 
       // vm.username = "@-";
 

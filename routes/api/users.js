@@ -43,10 +43,13 @@ module.exports = {
     console.log('saving new user: ', req.body);
     var newUser = new User(req.body);
 
+    console.log(newUser);
+
     newUser.save(function(err, userDoc) {
       console.log('done', userDoc);
       if (err) {
         res.status(400);
+        console.log(err);
         return res.send(err);
       }
 
