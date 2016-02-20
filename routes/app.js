@@ -8,7 +8,7 @@ var express         = require('express');
 var path            = require('path');
 var router          = express.Router();
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
   router.get('/confirm/:token', function(req, res) {
     console.log(req.params.token);

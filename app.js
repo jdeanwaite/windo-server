@@ -40,7 +40,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use for passport
-app.use(session({ secret: '' })); // session secret
+// require('./config/passport')(passport); // pass passport for configuration
+app.use(session({
+  secret: config.sessionSecret,
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -51,8 +56,8 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 // Route Setup
 // ---------------------------------------------------------------------------//
 // Sets up the routes to be used in the server.
-var apiRoutes = require('./routes/api')(app);
-var appRoutes = require('./routes/app')(app);
+var apiRoutes = require('./routes/api')(app, passport);
+var appRoutes = require('./routes/app')(app, passport);
 
 app.use('/app/'   , appRoutes);
 app.use('/api/v0/', apiRoutes);
