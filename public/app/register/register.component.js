@@ -9,21 +9,21 @@ angular.module('windoApp').directive('register', function () {
       vm.firstname = "";
       vm.lastname = "";
 
-      vm.handle = "@-";
+      vm.username = "@-";
 
       $scope.$watch(
          "register.firstname",
-         function handleChange(newValue, oldValue) {
-            if (vm.handle == "@" + oldValue + "-" + vm.lastname)
-               vm.handle = "@" + vm.firstname + "-" + vm.lastname;
+         function usernameChange(newValue, oldValue) {
+            if (vm.username == "@" + oldValue + "-" + vm.lastname)
+               vm.username = "@" + vm.firstname + "-" + vm.lastname;
          }
       )
 
       $scope.$watch(
          "register.lastname",
-         function handleChange(newValue, oldValue) {
-            if (vm.handle == "@" + vm.firstname + "-" + oldValue)
-               vm.handle = "@" + vm.firstname + "-" + vm.lastname;
+         function usernameChange(newValue, oldValue) {
+            if (vm.username == "@" + vm.firstname + "-" + oldValue)
+               vm.username = "@" + vm.firstname + "-" + vm.lastname;
          }
       )
 
