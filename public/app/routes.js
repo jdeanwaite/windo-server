@@ -1,5 +1,6 @@
 angular.module('windoApp')
-  .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
+  .config(function ($urlRouterProvider, $stateProvider, $locationProvider, $urlMatcherFactoryProvider) {
+    $urlMatcherFactoryProvider.strictMode(false);
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -8,7 +9,7 @@ angular.module('windoApp')
       //   template: '<login layout="column" layout-fill></login>'
       // })
       .state('dashboard', {
-        url: '/app/',
+        url: '/app',
         template: '<dashboard layout="column" layout-fill></dashboard>'//,
         // resolve: {
         //   currentUser: ($q) => {
@@ -22,7 +23,7 @@ angular.module('windoApp')
         // }
       })
       .state('create', {
-        url: '/app/create/',
+        url: '/app/create',
         template: '<create layout="column" layout-fill></create>'//,
       //   resolve: {
           // currentUser: ($q) => {
@@ -36,14 +37,14 @@ angular.module('windoApp')
       //   }
       })
       .state('login', {
-         url: '/app/login/',
+         url: '/app/login',
          template: '<login layout="column" layout-fill></login>'//,
          // resolve: {
          //
          // }
       })
       .state('register', {
-         url: '/app/register/',
+         url: '/app/register',
          template: '<register layout="column" layout-fill></register>'//,
          // resolve: {
          //
@@ -64,12 +65,12 @@ angular.module('windoApp')
       //   }
       // });
 
-    $urlRouterProvider.otherwise("/app/");
-  })
-  .run(function ($rootScope, $state) {
-    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-      if (error === 'AUTH_REQUIRED') {
-        // $state.go('login');
-      }
-    });
+    $urlRouterProvider.otherwise("/app");
   });
+  // .run(function ($rootScope, $state) {
+  //   $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+  //     if (error === 'AUTH_REQUIRED') {
+  //       // $state.go('login');
+  //     }
+  //   });
+  // });

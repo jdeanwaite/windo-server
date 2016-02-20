@@ -10,7 +10,23 @@ var router          = express.Router();
 
 module.exports = function(app) {
 
-  router.get('/:page', function(req, res) {
+  router.get('/confirm/:token', function(req, res) {
+    console.log(req.params.token);
+    var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport();
+    transporter.sendMail({
+        from: '',
+        to: '',
+        subject: 'hello',
+        text: 'hello world!'
+    }, function(result) {
+      console.log(result);
+      res.send('jo');
+    });
+  });
+
+  router.get('/*', function(req, res) {
+    console.log('here');
     res.set( { 'content-type': 'text/html; charset=utf-8' } )
        .sendFile(path.join(__dirname, '..', 'public/app/index.html'));
   });
