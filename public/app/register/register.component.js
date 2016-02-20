@@ -1,7 +1,7 @@
 angular.module('windoApp').directive('register', function () {
   return {
     restrict: 'E',
-    templateUrl: '/templates/register.html',
+    templateUrl: '/templates/register/register.html',
     controllerAs: 'register',
     controller: function ($http, $scope) {
       var vm = this;
