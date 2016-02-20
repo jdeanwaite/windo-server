@@ -10,7 +10,7 @@ var router          = express.Router();
 
 module.exports = function(app) {
 
-  router.get('/:page', function(req, res) {
+  router.get('/*', function(req, res) {
     res.set( { 'content-type': 'text/html; charset=utf-8' } )
        .sendFile(path.join(__dirname, '..', 'public/app/index.html'));
   });

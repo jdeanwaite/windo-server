@@ -1,10 +1,11 @@
-angular.module('windoApp').directive('register', function () {
+angular.module('windoApp').directive('confirmation', function () {
   return {
     restrict: 'E',
-    templateUrl: '/templates/register.html',
-    controllerAs: 'register',
+    templateUrl: '/templates/register/confirmation.html',
+    controllerAs: 'confirmation',
     controller: function ($http, $scope) {
       var vm = this;
+      // console.log('sdfkjsdf');
 
       // vm.firstname = "";
       // vm.lastname = "";

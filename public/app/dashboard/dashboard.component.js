@@ -1,7 +1,7 @@
 angular.module('windoApp').directive('dashboard', function () {
   return {
     restrict: 'E',
-    templateUrl: '/templates/dashboard.html',
+    templateUrl: '/templates/dashboard/dashboard.html',
     controllerAs: 'dashboard',
     controller: function ($http) {
       var vm = this;
