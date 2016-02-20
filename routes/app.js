@@ -12,12 +12,13 @@ module.exports = function(app) {
 
   router.get('/confirm/:token', function(req, res) {
     console.log(req.params.token);
+
     var nodemailer = require('nodemailer');
-    var transporter = nodemailer.createTransport();
+    var transporter = nodemailer.createTransport(app.config.smtpConfig);
     transporter.sendMail({
-        from: '',
-        to: '',
-        subject: 'hello',
+        from: 'noreply@windoapp.com',
+        to: 'jdeanwaite@gmail.com',
+        subject: 'Confirm registration',
         text: 'hello world!'
     }, function(result) {
       console.log(result);

@@ -1,13 +1,16 @@
 angular.module('windoApp').directive('register', function () {
   return {
     restrict: 'E',
-    templateUrl: '/templates/register.html',
+    templateUrl: '/templates/register/register.html',
     controllerAs: 'register',
     controller: function ($http, $scope) {
       var vm = this;
 
-      // vm.firstname = "";
-      // vm.lastname = "";
+      vm.firstname = "";
+      vm.lastname = "";
+      vm.email = "";
+      vm.password = "";
+      vm.password2 = "";
 
       // vm.username = "@-";
 
