@@ -2,7 +2,7 @@
 // USER MODEL
 // ---------------------------------------------------------------------------//
 // This module contains the User model. The user model is comprised of
-//  - handle: The user's handle
+//  - username: The user's username
 //  - created_at: The date and time the user was created.
 //  - updated_at: The date and time of the last update.
 // ---------------------------------------------------------------------------//
@@ -12,7 +12,7 @@ var Schema            = mongoose.Schema;
 
 // Creates a User Schema. This will be the basis of how user data is stored.
 var UserSchema = new Schema({
-    handle:     {type: String, required: true},
+    username:   {type: String, required: true },
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now}
 });

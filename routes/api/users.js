@@ -5,7 +5,7 @@
 // router.
 //
 // TODO:
-// - User handles
+// - Usernames
 // - User email registration
 // - Verfication emails
 // - Passwords
