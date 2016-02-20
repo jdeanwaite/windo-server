@@ -8,6 +8,7 @@
 // ---------------------------------------------------------------------------//
 // Dependencies
 var bodyParser      = require('body-parser');
+var config          = require('./config');
 var cookieParser    = require('cookie-parser');
 var express         = require('express');
 var session         = require('express-session');
@@ -23,6 +24,8 @@ var app             = express();
 // ---------------------------------------------------------------------------//
 // Connects to the MongoDB server
 mongoose.connect("mongodb://localhost/windoServer-dev");
+
+app.config = config;
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(__dirname + '/public/favicon.ico'));
