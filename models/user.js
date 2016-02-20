@@ -18,7 +18,7 @@ var UserSchema = new Schema({
 });
 
 // Sets the created_at parameter equal to the current time
-UserSchema.pre('save', function(next){
+UserSchema.pre('save', function(next) {
     now = new Date();
     this.updated_at = now;
     if(!this.created_at) {
