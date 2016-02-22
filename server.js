@@ -8,7 +8,7 @@
 // This file initializes the Node.js server.
 // ---------------------------------------------------------------------------//
 // Dependencies
-var app = require('./app');
+var app = require('./server/app');
 
 // Set the port to listen on.
 app.set('port', process.env.PORT || 3000);
