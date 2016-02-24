@@ -3,7 +3,7 @@
 var app = angular.module('windoApp', [
   'ui.router',
   'ngMaterial',
-  'ngMessages'
+  'ngMessages',
 ]);
 
 angular.module('windoApp').config(function ($mdThemingProvider) {

@@ -16,17 +16,7 @@ angular.module('windoApp')
       .state('create', {
         url: '/app/create',
         template: '<create layout="column" layout-fill></create>',
-        resolve: {
-          currentUser: function ($q, AuthService) {
-            // if (!Meteor.userId()) {
-            //   return $q.reject('AUTH_REQUIRED');
-            // }
-            // else {
-            console.log('good');
-              return $q.resolve();
-            // }
-          }
-        }
+        resolve: { authService: authenticate }
       })
       .state('login', {
          url: '/app/login',

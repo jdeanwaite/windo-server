@@ -3,7 +3,7 @@ angular.module('windoApp').directive('dashboard', function () {
     restrict: 'E',
     templateUrl: '/dashboard/dashboard.html',
     controllerAs: 'dashboard',
-    controller: function ($http) {
+    controller: function ($http, $state) {
       var vm = this;
       vm.meetups = [];
       vm.invitees=[];

@@ -20,7 +20,8 @@ var MeetupSchema = new Schema({
     updated_at: { type: Date, default: Date.now },
     fromDate:   { type: Date, required: false   },
     toDate:     { type: Date, required: false   },
-    invitees:   { type: Array                   }
+    location:   { type: String, required: false },
+    invitees:   { type: Array, default: []      }
 });
 
 // Sets the created_at parameter equal to the current time

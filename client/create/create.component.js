@@ -13,6 +13,8 @@ angular.module('windoApp').directive('create', function () {
       vm.toDate = new Date();
       vm.toDate.setDate(vm.fromDate.getDate() + 7);
 
+      vm.selectedDays = {};
+
       // this.helpers({
       //   users: () => {
       //     var users = Meteor.users.find({});
@@ -22,19 +24,20 @@ angular.module('windoApp').directive('create', function () {
       // });
 
       vm.submitForm = function () {
-        if (!vm.createForm.$valid)
-          return;
+        // if (!vm.createForm.$valid)
+        //   return;
+        //
+        // console.log('submitting');
+        // var meetup = {
+        //   _ownerId: '1234',
+        //   name:     vm.eventName,
+        //   fromDate: vm.fromDate,
+        //   toDate:   vm.toDate,
+        //   invitees: vm.invitees
+        // };
+        // console.log(meetup);
 
-        console.log('submitting');
-        var meetup = {
-          _ownerId: '1234',
-          name:     vm.eventName,
-          fromDate: vm.fromDate,
-          toDate:   vm.toDate,
-          invitees: vm.invitees
-        };
-        console.log(meetup);
-
+        console.log(vm.selectedDays);
         // var meetupId = Events.insert(event);
         // $state.go("event", { eventId: eventId });
       }
