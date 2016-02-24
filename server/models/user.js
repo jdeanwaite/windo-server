@@ -7,6 +7,7 @@
 //  - updated_at: The date and time of the last update.
 // ---------------------------------------------------------------------------//
 // Dependencies
+var bcrypt            = require('bcrypt-nodejs');
 var mongoose          = require('mongoose');
 var Schema            = mongoose.Schema;
 
@@ -16,6 +17,7 @@ var UserSchema = new Schema({
     lastName:   {type: String, required: true },
     username:   {type: String, default: ""    },
     email:      {type: String, required: true },
+    password:   {type: String, required: true },
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
     verified:   {type: Boolean, default: false}
@@ -30,6 +32,17 @@ UserSchema.pre('save', function(next) {
     }
     next();
 });
+
+UserSchema.methods.generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(6), null);
+};
+
+UserSchema.methods.validPassword = function(password) {
+  console.log(password);
+  console.log(this.password);
+  console.log(this);
+  return bcrypt.compareSync(password, this.password);
+};
 
 // Exports the UserSchema. Sets the MongoDB collection to be used as: "Users"
 module.exports = mongoose.model('Users', UserSchema);

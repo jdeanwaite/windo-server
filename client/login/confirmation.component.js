@@ -1,33 +1,14 @@
-angular.module('windoApp').directive('register', function () {
+angular.module('windoApp').directive('confirmation', function () {
   return {
     restrict: 'E',
-    templateUrl: '/register/register.html',
-    controllerAs: 'register',
+    templateUrl: '/login/confirmation.html',
+    controllerAs: 'confirmation',
     controller: function ($http, $scope) {
       var vm = this;
+      // console.log('sdfkjsdf');
 
-      vm.firstName = "";
-      vm.lastName = "";
-      vm.email = "";
-      vm.password = "";
-      vm.password2 = "";
-
-      vm.submit = function() {
-        var user = {
-          firstName: vm.firstName,
-          lastName: vm.lastName,
-          email: vm.email,
-          password: vm.password
-        }
-
-        $http.post("/api/v0/users", user)
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-      }
+      // vm.firstname = "";
+      // vm.lastname = "";
 
       // vm.username = "@-";
 

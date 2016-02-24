@@ -17,7 +17,7 @@ var path              = require('path');
 var router            = express.Router();
 var users             = require('./api/users');
 
-module.exports = function(app, passport) {
+module.exports = function(app) {
 
 // ---------------------------------------------------------------------------//
 // User Endpoints

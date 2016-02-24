@@ -12,6 +12,7 @@ var config          = require('./config');
 var cookieParser    = require('cookie-parser');
 var express         = require('express');
 var favicon         = require('serve-favicon');
+var LocalStrategy   = require('passport-local').Strategy;
 var logger          = require('morgan');
 var mongoose        = require('mongoose');
 var passport        = require('passport');
@@ -50,7 +51,11 @@ app.use(session({
   store: new RedisStore({ // For session persistance! If we restart the server the session can still be active.
     host: 'localhost',
     port: 6379
-  })
+  }),
+  cookie: {
+    maxAge: 3600000 * 24 * 7
+  },
+  rolling: true
 }));
 
 app.use(passport.initialize());
@@ -59,12 +64,59 @@ app.use(passport.session()); // persistent login sessions
 // Use BowerComponents
 app.use('/bower_components',  express.static(path.join(__dirname, '..', 'bower_components')));
 
+// Passport user serialize
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+// Passport user deserialize
+passport.deserializeUser(function(id, done) {
+  User.findById(id)
+  .select('-password -created_at -updated_at -__v')
+  .exec(function(err, user) {
+    done(err, user);
+  });
+});
+
+// Login local strategy
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ $or: [ { username: username }, { email: username }] }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect email/username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.post('/login',
+  passport.authenticate('local'),
+  function (req, res) {
+    res.json(req.user);
+  });
+
+app.get('/login/status', function(req, res) {
+  res.json(req.user);
+});
+
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.json({success: true});
+})
+
 // ---------------------------------------------------------------------------//
 // Route Setup
 // ---------------------------------------------------------------------------//
 // Sets up the routes to be used in the server.
-var apiRoutes   = require('./routes/api.routes'  )(app, passport);
-var appRoutes   = require('./routes/app.routes'  )(app, passport);
+var apiRoutes   = require('./routes/api.routes')(app);
+var appRoutes   = require('./routes/app.routes')(app);
+
+var User = require('./models/user');
 
 app.use('/app/'   , appRoutes  );
 app.use('/api/v0/', apiRoutes  );

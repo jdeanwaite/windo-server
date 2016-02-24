@@ -9,7 +9,8 @@ var app = angular.module('windoApp', [
 angular.module('windoApp').config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('default')
   .primaryPalette('indigo')
-  .accentPalette('pink');
+  .accentPalette('pink')
+  .warnPalette('deep-orange');
 });
 
 angular.module('windoApp').controller(function($scope) {

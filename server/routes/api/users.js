@@ -42,7 +42,7 @@ module.exports = {
   insert: (req, res) => {
     console.log('saving new user: ', req.body);
     var newUser = new User(req.body);
-
+    newUser.password = newUser.generateHash(newUser.password);
     console.log(newUser);
 
     newUser.save(function(err, userDoc) {
