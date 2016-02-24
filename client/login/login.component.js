@@ -3,9 +3,8 @@ angular.module('windoApp').directive('login', function () {
     restrict: 'E',
     templateUrl: '/login/login.html',
     controllerAs: 'login',
-    controller: function ($http, $state) {
+    controller: function (authService, $http, $state) {
       var vm = this;
-      vm.showLogin = false;
 
       vm.register = function() {
         if (vm.password != vm.confirmPassword) {
@@ -33,22 +32,15 @@ angular.module('windoApp').directive('login', function () {
         if (vm.loginForm.$valid) {
           console.log('loggin in');
 
-          var creds = {
-            username: vm.username,
-            password: vm.loginPassword
-          };
-
-          $http.post("/login", creds)
-          .then(function(data) {
-            console.log(data);
-            console.log(data.status);
-            $state.go('dashboard');
+          authService.login(vm.username, vm.loginPassword)
+          .then(function (user) {
+            if (user) {
+              $state.go('dashboard');
+            } else {
+              vm.username = "";
+              vm.loginPassword = "";
+            }
           })
-          .catch(function(err) {
-            console.log('failed:', err);
-            vm.username = "";
-            vm.loginPassword = "";
-          });
         }
       }
 

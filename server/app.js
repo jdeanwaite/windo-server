@@ -94,16 +94,24 @@ passport.use(new LocalStrategy(
   }
 ));
 
+// Login route
 app.post('/login',
   passport.authenticate('local'),
   function (req, res) {
-    res.json(req.user);
+    User.findById(req.user._id)
+    .select('-password -created_at -updated_at -__v')
+    .exec(function(err, user) {
+      if (!err) return res.json(user);
+      res.send(null);
+    });
   });
 
+// Login status route - sends user to client
 app.get('/login/status', function(req, res) {
   res.json(req.user);
 });
 
+// Logout route - logs a user out.
 app.get('/logout', function(req, res) {
   req.logout();
   res.json({success: true});

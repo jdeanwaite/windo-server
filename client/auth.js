@@ -8,14 +8,8 @@ angular.module('windoApp').factory('authService',
 
     // return available functions for use in controllers
     return ({
+      // Querys the server to check if the user is logged in.
       isLoggedIn: function () {
-        console.log('checking logged in');
-        // var deferred = $q.defer();
-        // $timeout(function() {
-        //   console.log('resolve');
-        //   deferred.resolve(true);
-        // }, 1000);
-        // return deferred.promise;
         return $http.get('/login/status')
         .then(function(res) {
           console.log('status:', res.status);
@@ -26,7 +20,24 @@ angular.module('windoApp').factory('authService',
           return false;
         });
       },
-      login: false,
+
+      login: function (username, password) {
+        var creds = {
+          username: username,
+          password: password
+        };
+
+        return $http.post("/login", creds)
+        .then(function(res) {
+          console.log(res.data);
+          console.log(res.status);
+          return res.data;
+        })
+        .catch(function(err) {
+          console.log('login failed:', err);
+          return false;
+        });
+      },
       logout: false,
       register: false,
       user: function () { console.log('returning'); return user; }
