@@ -31,6 +31,32 @@ module.exports = {
     });
   },
 
+  // ---------------------------------------------------------------------------//
+  // Meetups: Get one
+  // Retrieves a list of all the meetups and sends them to the client.
+  // TODO:
+  // - get Meetup info from session and return list of all meetups
+  // - figure out default max number of meetups to return.
+  // - allow for query of max number to return or base on dates.
+  // ---------------------------------------------------------------------------//
+    getOne: (req, res) => {
+      console.log('retrieving a meetups');
+      Meetup.findOne({ _id: req.params.id }, function(err, doc) {
+        if (err) {
+          res.status(400);
+          return res.send(err);
+        }
+
+        if (!doc) {
+          res.status(404);
+          return res.json({});
+        }
+
+        res.status(200);
+        res.json(doc);
+      });
+    },
+
 // ---------------------------------------------------------------------------//
 // Meetups: Insert
 // Inserts a new meetup into the database. Sends the new doc, or err if exists.

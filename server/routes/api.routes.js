@@ -19,13 +19,13 @@ var users             = require('./api/users');
 
 module.exports = function(app) {
 
-  router.use('/*', function(req, res, next) {
-    if (!req.user) {
-      return res.status(401).json({error: "Unauthorized"});
-    }
-    console.log('working');
-    next();
-  });
+  // router.use('/*', function(req, res, next) {
+  //   if (!req.user) {
+  //     return res.status(401).json({error: "Unauthorized"});
+  //   }
+  //   console.log('working');
+  //   next();
+  // });
 
 // ---------------------------------------------------------------------------//
 // User Endpoints
@@ -39,6 +39,7 @@ module.exports = function(app) {
 // Meet-up Endpoints
 // ---------------------------------------------------------------------------//
   router.get   ('/meetups/'   , meetups.getAll);
+  router.get   ('/meetups/:id', meetups.getOne);
   router.post  ('/meetups/'   , meetups.insert);
   router.put   ('/meetups/:id', meetups.update);
   router.delete('/meetups/:id', meetups.remove);
