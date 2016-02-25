@@ -38,6 +38,11 @@ module.exports = {
   insert: (req, res) => {
     console.log('saving new meetup: ', req.body);
 
+    if (!req.body.dateHash || Object.keys(req.body.dateHash) <= 0)
+      return res.status(400).json({
+        error : "A date hash is required"
+      });
+
     for (year in req.body.dateHash) {
       for (month in req.body.dateHash[year]) {
         for (day in req.body.dateHash[year][month]) {
