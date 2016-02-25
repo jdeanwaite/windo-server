@@ -1,1 +1,111 @@
-<h1>timesdflkj</h1>
+<style>
+.center {
+  text-align: center;
+}
+
+.container {
+  overflow-x: scroll;
+  /*width: auto;*/
+  /*min-width: 100%;*/
+  /*overflow-y: visible;*/
+}
+
+.parent{
+  width: 300px;
+  display: inline-block;
+  background-color: red;
+
+}
+
+.day-number {
+  font-size: 12px;
+  /* em */
+}
+
+.day-text {
+  font-size: 16px;
+  /* em */
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table td {
+  width:100%;
+  position:relative;
+  /*background-color: grey;*/
+  /*border: 2px black solid;*/
+}
+
+.table td:after{
+  content:'';
+  display:block;
+  margin-top:100%;
+}
+
+.day-column {
+  min-width: 160px;
+  display: inline-block;
+  /*margin: auto;*/
+  /*margin-left: 50px;
+  margin-right: 50px;*/
+  /* em*/
+}
+
+td .content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.hour-button {
+  min-width: 100%;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 0%;
+  margin: 0;
+}
+
+.hour-button.selected {
+  background-color: #FF4081;
+  color: rgba(255, 255, 255, .87);
+}
+
+.hour-button.selected:hover {
+  background-color: #FF80AB;
+  color: rgba(255, 255, 255, .87);
+}
+
+</style>
+
+<md-content layout="column" flex layout-align="start center">
+  <div layout="row" class="container">
+    <!-- <div class="parent" ng-repeat="day in timePicker.days"> -->
+      <div layout="column" flex class="day-column center" ng-repeat="day in timePicker.days">
+        <span class="day-number">{{day | date: "d"}}</span>
+        <span class="day-text">{{day | date: "EEE" | uppercase}}</span>
+
+        <table class="table">
+          <tbody>
+            <tr ng-repeat="(hour, selected) in timePicker.hours[day.getFullYear()][day.getMonth()][day.getDate()] track by $index">
+              <td class="center">
+                <div class="content" layout="column" layout-align="center center">
+                  <md-button class="hour-button" ng-class="{selected:selected}" ng-click="timePicker.selectHour(day, hour)">{{hour}}</md-button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</md-content>

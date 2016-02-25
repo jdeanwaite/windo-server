@@ -10,6 +10,7 @@ angular.module('windoApp').directive('submitTimes', function () {
       $http.get('/api/v0/meetups/' + $stateParams.id)
       .then(function(res) {
         console.log(res);
+        vm.meetup = res.data;
       })
       .catch(function(err) {
         console.log('no fun:', err);
