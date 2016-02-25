@@ -11,6 +11,7 @@
 // Dependencies
 var mongoose          = require('mongoose');
 var Schema            = mongoose.Schema;
+var Mixed             = Schema.Types.Mixed;
 
 // Creates a Meetup Schema. This will be the basis of how meetup data is stored.
 var MeetupSchema = new Schema({
@@ -18,8 +19,7 @@ var MeetupSchema = new Schema({
     name:       { type: String, required: true  },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
-    fromDate:   { type: Date, required: false   },
-    toDate:     { type: Date, required: false   },
+    datesHash:  { type: Mixed, required: true   },
     location:   { type: String, required: false },
     invitees:   { type: Array, default: []      }
 });

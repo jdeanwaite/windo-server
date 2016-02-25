@@ -25,7 +25,7 @@
 
 <md-content class="md-padding md-whiteframe-1dp">
   <div class="create-container">
-    <form name="createForm" class="create-form" layout-align="start center" ng-submit="create.submitForm();">
+    <form name="create.createForm" class="create-form" layout-align="start center" ng-submit="create.submitForm();">
       <md-chips ng-model="create.invitees" readonly="false" placeholder="Search for friends" secondary-placeholder="Search for friends">
         <md-chip-template>
           <strong>{{$chip}}</strong>
@@ -35,7 +35,7 @@
       <md-input-container class="md-block">
         <label>Location</label>
         <input name="eventName" class="" ng-model="create.eventName" required md-maxlength="24" minlength="4">
-        <div ng-messages="createForm.eventName.$error" ng-show="createForm.eventName.$dirty">
+        <div ng-messages="create.createForm.eventName.$error" ng-show="create.createForm.eventName.$dirty">
           <div ng-message="required">This is required!</div>
           <div ng-message="md-maxlength">That's too long!</div>
           <div ng-message="minlength">That's too short!</div>
@@ -51,7 +51,7 @@
 
     <label style="left: 3px; position: relative; color: #bdbdbd;">Set Dates Below</label>
     <date-picker selected-days="create.selectedDays"></date-picker>
-    <md-button ng-disabled="createForm.$invalid" style="height: 60px; width: 100%; margin: 0; margin-top: 25px;" class="md-raised md-primary" ng-click="create.submitForm();">
+    <md-button ng-disabled="create.createForm.$invalid" style="height: 60px; width: 100%; margin: 0; margin-top: 25px;" class="md-raised md-primary" ng-click="create.submitForm();">
       Create
     </md-button>
 
