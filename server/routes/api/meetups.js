@@ -37,18 +37,52 @@ module.exports = {
 // ---------------------------------------------------------------------------//
   insert: (req, res) => {
     console.log('saving new meetup: ', req.body);
+      // var temp = {
+      //   16 : {
+      //     false : {
+      //       6: true,
+      //       "meow": true,
+      //       8: true,
+      //       9: true,
+      //       10: true
+      //     }
+      //   }
+      // }
+
+    for (year in temp) {
+      for (month in temp[year]) {
+        for (day in temp[year][month]) {
+          var date = new Date(year, month, day);
+          if (date == "Invalid Date")
+            return res.status(400).json({
+              error : The given dates are invalid
+            });
+        }
+      }
+    }
+
+
+    // for (year in req.body.selectedDays) {
+    //   for (month in req.body.selectedDays[year]) {
+    //     for (day in req.body.selectedDays[year][month]) {
+    //       var date = new Date(year, month, day);
+    //       console.log(date);
+    //     }
+    //   }
+    // }
+
     var newMeetup = new Meetup(req.body);
 
-    newMeetup.save(function(err, meetupDoc) {
-      console.log('done', meetupDoc);
-      if (err) {
-        res.status(400);
-        return res.send(err);
-      }
-
-      res.status(200);
-      res.json(meetupDoc);
-    });
+    // newMeetup.save(function(err, meetupDoc) {
+    //   console.log('done', meetupDoc);
+    //   if (err) {
+    //     res.status(400);
+    //     return res.send(err);
+    //   }
+    //
+    //   res.status(200);
+    //   res.json(meetupDoc);
+    // });
   },
 
 // ---------------------------------------------------------------------------//
