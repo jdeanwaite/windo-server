@@ -35,9 +35,9 @@ angular.module('windoApp').directive('create', function () {
           // invitees: vm.invitees
         };
         console.log(meetup);
-        $http.post('/api/v0/meetups', data)
+        $http.post('/api/v0/meetups', meetup)
         .then(function (res) {
-          console.log('yay!');
+          console.log('yay!', res);
         })
         .catch(function(err) {
           console.log(':(', err);

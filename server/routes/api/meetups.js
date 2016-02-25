@@ -49,10 +49,11 @@ module.exports = {
       //   }
       // }
 
-    for (year in temp) {
-      for (month in temp[year]) {
-        for (day in temp[year][month]) {
+    for (year in req.body.dateHash) {
+      for (month in req.body.dateHash[year]) {
+        for (day in req.body.dateHash[year][month]) {
           var date = new Date(year, month, day);
+          console.log(date);
           if (date == "Invalid Date")
             return res.status(400).json({
               error : "The given dates are invalid"
