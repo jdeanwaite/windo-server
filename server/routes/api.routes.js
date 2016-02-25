@@ -19,13 +19,13 @@ var users             = require('./api/users');
 
 module.exports = function(app) {
 
-  // router.use('/*', function(req, res, next) {
-  //   if (!req.user) {
-  //     return res.status(401).json({error: "Unauthorized"});
-  //   }
-  //   console.log('working');
-  //   next();
-  // });
+  router.use('/*', function(req, res, next) {
+    if (!req.user) {
+      return res.status(401).json({error: "Unauthorized"});
+    }
+    console.log('working');
+    next();
+  });
 
 // ---------------------------------------------------------------------------//
 // User Endpoints
