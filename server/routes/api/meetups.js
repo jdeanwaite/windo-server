@@ -37,6 +37,7 @@ module.exports = {
 // ---------------------------------------------------------------------------//
   insert: (req, res) => {
     console.log('saving new meetup: ', req.body);
+<<<<<<< HEAD
       // var temp = {
       //   16 : {
       //     false : {
@@ -48,6 +49,10 @@ module.exports = {
       //     }
       //   }
       // }
+=======
+
+
+>>>>>>> 4c6def01df63e80757b539fe8767d6a5eb6c74ee
 
     for (year in req.body.dateHash) {
       for (month in req.body.dateHash[year]) {
@@ -58,32 +63,29 @@ module.exports = {
             return res.status(400).json({
               error : "The given dates are invalid"
             });
+
+          var today = new Date(Date.now());
+          if (month > 11 || month < 0 || day > 31 || day < 0 ||
+              year < today.getFullYear() || year > (today.getFullYear() + 5))
+            return res.status(400).json({
+              error : "The given dates are invalid"
+            });
         }
       }
     }
 
-
-    // for (year in req.body.selectedDays) {
-    //   for (month in req.body.selectedDays[year]) {
-    //     for (day in req.body.selectedDays[year][month]) {
-    //       var date = new Date(year, month, day);
-    //       console.log(date);
-    //     }
-    //   }
-    // }
-
     var newMeetup = new Meetup(req.body);
 
-    // newMeetup.save(function(err, meetupDoc) {
-    //   console.log('done', meetupDoc);
-    //   if (err) {
-    //     res.status(400);
-    //     return res.send(err);
-    //   }
-    //
-    //   res.status(200);
-    //   res.json(meetupDoc);
-    // });
+    newMeetup.save(function(err, meetupDoc) {
+      console.log('done', meetupDoc);
+      if (err) {
+        res.status(400);
+        return res.send(err);
+      }
+
+      res.status(200);
+      res.json(meetupDoc);
+    });
   },
 
 // ---------------------------------------------------------------------------//
