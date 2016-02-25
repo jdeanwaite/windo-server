@@ -3,7 +3,7 @@ angular.module('windoApp').directive('create', function () {
     restrict: 'E',
     templateUrl: '/create/create.html',
     controllerAs: 'create',
-    controller: function ($mdMedia, $state) {
+    controller: function ($mdMedia, $state, $http) {
       var vm = this;
 
       vm.invitees = [];
@@ -24,20 +24,24 @@ angular.module('windoApp').directive('create', function () {
       // });
 
       vm.submitForm = function () {
-        // if (!vm.createForm.$valid)
-        //   return;
-        //
-        // console.log('submitting');
-        // var meetup = {
-        //   _ownerId: '1234',
-        //   name:     vm.eventName,
-        //   fromDate: vm.fromDate,
-        //   toDate:   vm.toDate,
-        //   invitees: vm.invitees
-        // };
-        // console.log(meetup);
+        if (!vm.createForm.$valid)
+          return;
 
-        console.log(vm.selectedDays);
+        console.log('submitting');
+        var meetup = {
+          _ownerId: '1234',
+          name:     vm.eventName,
+          dateHash: vm.selectedDays
+          // invitees: vm.invitees
+        };
+        console.log(meetup);
+        $http.post('/api/v0/meetups', data)
+        .then(function (res) {
+          console.log('yay!');
+        })
+        .catch(function(err) {
+          console.log(':(', err);
+        });
         // var meetupId = Events.insert(event);
         // $state.go("event", { eventId: eventId });
       }
