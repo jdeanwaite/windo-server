@@ -37,22 +37,6 @@ module.exports = {
 // ---------------------------------------------------------------------------//
   insert: (req, res) => {
     console.log('saving new meetup: ', req.body);
-<<<<<<< HEAD
-      // var temp = {
-      //   16 : {
-      //     false : {
-      //       6: true,
-      //       "meow": true,
-      //       8: true,
-      //       9: true,
-      //       10: true
-      //     }
-      //   }
-      // }
-=======
-
-
->>>>>>> 4c6def01df63e80757b539fe8767d6a5eb6c74ee
 
     for (year in req.body.dateHash) {
       for (month in req.body.dateHash[year]) {
