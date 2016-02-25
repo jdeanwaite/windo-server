@@ -37,23 +37,21 @@ module.exports = {
 // ---------------------------------------------------------------------------//
   insert: (req, res) => {
     console.log('saving new meetup: ', req.body);
-      // var temp = {
-      //   16 : {
-      //     false : {
-      //       6: true,
-      //       "meow": true,
-      //       8: true,
-      //       9: true,
-      //       10: true
-      //     }
-      //   }
-      // }
 
-    for (year in temp) {
-      for (month in temp[year]) {
-        for (day in temp[year][month]) {
+
+
+    for (year in req.body.dateHash) {
+      for (month in req.body.dateHash[year]) {
+        for (day in req.body.dateHash[year][month]) {
           var date = new Date(year, month, day);
           if (date == "Invalid Date")
+            return res.status(400).json({
+              error : "The given dates are invalid"
+            });
+
+          var today = new Date(Date.now());
+          if (month > 11 || month < 0 || day > 31 || day < 0 ||
+              year < today.getFullYear() || year > (today.getFullYear() + 5))
             return res.status(400).json({
               error : "The given dates are invalid"
             });
@@ -61,28 +59,18 @@ module.exports = {
       }
     }
 
-
-    // for (year in req.body.selectedDays) {
-    //   for (month in req.body.selectedDays[year]) {
-    //     for (day in req.body.selectedDays[year][month]) {
-    //       var date = new Date(year, month, day);
-    //       console.log(date);
-    //     }
-    //   }
-    // }
-
     var newMeetup = new Meetup(req.body);
 
-    // newMeetup.save(function(err, meetupDoc) {
-    //   console.log('done', meetupDoc);
-    //   if (err) {
-    //     res.status(400);
-    //     return res.send(err);
-    //   }
-    //
-    //   res.status(200);
-    //   res.json(meetupDoc);
-    // });
+    newMeetup.save(function(err, meetupDoc) {
+      console.log('done', meetupDoc);
+      if (err) {
+        res.status(400);
+        return res.send(err);
+      }
+
+      res.status(200);
+      res.json(meetupDoc);
+    });
   },
 
 // ---------------------------------------------------------------------------//

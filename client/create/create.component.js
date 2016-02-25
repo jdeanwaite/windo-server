@@ -27,6 +27,10 @@ angular.module('windoApp').directive('create', function () {
         if (!vm.createForm.$valid)
           return;
 
+          vm.selectedDays[2016][12] = {
+            32: true
+          }
+
         console.log('submitting');
         var meetup = {
           _ownerId: '1234',
@@ -35,7 +39,7 @@ angular.module('windoApp').directive('create', function () {
           // invitees: vm.invitees
         };
         console.log(meetup);
-        $http.post('/api/v0/meetups', data)
+        $http.post('/api/v0/meetups', meetup)
         .then(function (res) {
           console.log('yay!');
         })

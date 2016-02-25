@@ -19,7 +19,7 @@ var MeetupSchema = new Schema({
     name:       { type: String, required: true  },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
-    datesHash:  { type: Mixed, required: true   },
+    dateHash:   { type: Mixed, required: true   },
     location:   { type: String, required: false },
     invitees:   { type: Array, default: []      }
 });
