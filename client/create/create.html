@@ -34,16 +34,16 @@
       <br>
       <md-input-container class="md-block">
         <label>Location</label>
-        <input name="eventName" class="" ng-model="create.eventName" required md-maxlength="24" minlength="4">
-        <div ng-messages="create.createForm.eventName.$error" ng-show="create.createForm.eventName.$dirty">
+        <input name="eventName" class="" ng-model="create.location" md-maxlength="24" minlength="4">
+        <!-- <div ng-messages="create.createForm.location.$error" ng-show="create.createForm.location.$dirty">
           <div ng-message="required">This is required!</div>
           <div ng-message="md-maxlength">That's too long!</div>
           <div ng-message="minlength">That's too short!</div>
-        </div>
+        </div> -->
       </md-input-container>
       <md-input-container class="md-block">
         <label>Event Name</label>
-        <input name="test" class="" ng-model="create.test">
+        <input name="test" class="" ng-model="create.eventName" required>
       </md-input-container>
 
       <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;">
