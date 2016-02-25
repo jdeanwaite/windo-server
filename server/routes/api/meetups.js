@@ -55,7 +55,7 @@ module.exports = {
           var date = new Date(year, month, day);
           if (date == "Invalid Date")
             return res.status(400).json({
-              error : The given dates are invalid
+              error : "The given dates are invalid"
             });
         }
       }
