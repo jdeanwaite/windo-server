@@ -27,10 +27,6 @@ angular.module('windoApp').directive('create', function () {
         if (!vm.createForm.$valid)
           return;
 
-          vm.selectedDays[2016][12] = {
-            32: true
-          }
-
         console.log('submitting');
         var meetup = {
           _ownerId: '1234',
