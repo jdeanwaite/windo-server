@@ -14,11 +14,11 @@ angular.module('windoApp').directive('dashboard', function () {
       });
 
       this.goToMeetup = function (id) {
-        $state.go("meetup", { id: id });
+        $state.go('submitTimes', {id: id});
       }
 
       this.deleteMeetup = function (id) {
-        //delete meetup here.
+        $state.go('submitTimes', {id: id});
       }
     }
   }
