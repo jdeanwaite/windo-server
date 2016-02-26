@@ -6,11 +6,16 @@ angular.module('windoApp').directive('timePicker', function () {
     scope: {
       meetup: '=meetup'
     },
-    controller: function ($state, $http, $scope) {
+    controller: function ($state, $http, $scope, $document) {
       var vm = this;
       console.log('workgin tiedfslkfj');
 
+      var dayHeaders = $document.find('.day-headers');
 
+      $document.find('.container').bind('scroll', function () {
+        dayHeaders.css('left', -$(this).scrollLeft() + "px");
+        // console.log();
+      });
 
       vm.hours = {};
       vm.days = [];

@@ -1,6 +1,9 @@
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
 <style>
+  .timepicker {
+    margin-top: 20px;
+  }
 </style>
 
 <md-toolbar class="main-toolbar md-whiteframe-4dp">
@@ -9,7 +12,7 @@
       <md-icon class="material-icons">close</md-icon>
     </md-button>
     <span flex></span>
-    <h2>Submit Times</h2>
+    <h2>Select your availability</h2>
     <span flex></span>
     <md-button class="md-icon-button md-accent md-hue-1" aria-label="Account">
       <md-icon class="material-icons">info_outline</md-icon>
@@ -17,4 +20,7 @@
   </div>
 </md-toolbar>
 
-<time-picker meetup="submitTimes.meetup"></time-picker>
+<md-content layout="column">
+  <time-picker class="timepicker" layout="column" flex meetup="submitTimes.meetup"></time-picker>
+  <md-button class="md-primary md-raised">Submit Times</md-button>
+</md-content>

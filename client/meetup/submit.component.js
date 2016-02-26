@@ -9,7 +9,7 @@ angular.module('windoApp').directive('submitTimes', function () {
 
       $http.get('/api/v0/meetups/' + $stateParams.id)
       .then(function(res) {
-        console.log(res);
+        console.log('yay', res);
         vm.meetup = res.data;
       })
       .catch(function(err) {

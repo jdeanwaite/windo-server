@@ -4,7 +4,8 @@
 }
 
 .container {
-  overflow-x: scroll;
+  /*-webkit-overflow-scrolling: auto;*/
+  overflow: scroll;
   /*width: auto;*/
   /*min-width: 100%;*/
   /*overflow-y: visible;*/
@@ -19,16 +20,18 @@
 
 .day-number {
   font-size: 12px;
+  margin-bottom: 10px;
   /* em */
 }
 
 .day-text {
   font-size: 16px;
+  margin-bottom: 15px;
   /* em */
 }
 
 .table {
-  width: 100%;
+  width: 50px;
   table-layout: fixed;
   border-collapse: collapse;
 }
@@ -47,8 +50,9 @@
 }
 
 .day-column {
-  min-width: 160px;
-  display: inline-block;
+  width: 140px;
+  min-width: 140px;
+  text-align: center;
   /*margin: auto;*/
   /*margin-left: 50px;
   margin-right: 50px;*/
@@ -85,27 +89,39 @@ td .content {
   color: rgba(255, 255, 255, .87);
 }
 
+/*.day-headers {
+  position: relative;
+  max-width: 100%;
+}*/
+
 </style>
 
-<md-content layout="column" flex layout-align="start center">
-  <div layout="row" class="container">
+<!-- <md-content layout="column" flex layout-align="start center" style="overflow: scroll;"> -->
+  <!-- <div class="day-headers" layout="row">
+    <div layout="column" class="day-column center" ng-repeat="day in timePicker.days" layout-align="start center">
+      <span class="day-number">{{day | date: "d"}}</span>
+      <span class="day-text">{{day | date: "EEE" | uppercase}}</span>
+    </div>
+  </div> -->
+  <div class="container" layout="row">
     <!-- <div class="parent" ng-repeat="day in timePicker.days"> -->
-      <div layout="column" flex class="day-column center" ng-repeat="day in timePicker.days">
+      <div layout="column" class="day-column center" ng-repeat="day in timePicker.days" layout-align="start center">
         <span class="day-number">{{day | date: "d"}}</span>
         <span class="day-text">{{day | date: "EEE" | uppercase}}</span>
-
         <table class="table">
           <tbody>
             <tr ng-repeat="(hour, selected) in timePicker.hours[day.getFullYear()][day.getMonth()][day.getDate()] track by $index">
               <td class="center">
                 <div class="content" layout="column" layout-align="center center">
-                  <md-button class="hour-button" ng-class="{selected:selected}" ng-click="timePicker.selectHour(day, hour)">{{hour}}</md-button>
+                  <md-button class="hour-button" ng-class="{selected:selected}" ng-click="timePicker.selectHour(day, hour)">
+                    {{ day.setHours(hour) | date: "h"}}
+                  </md-button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
-</md-content>
+<!-- </md-content> -->
