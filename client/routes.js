@@ -23,6 +23,11 @@ angular.module('windoApp')
         template: '<submit-times layout="column" layout-fill></submit-times>'//,
         // resolve: { authService: authenticate }
       })
+      .state('eventLanding', {
+        url: '/app/meetup/:id/event',
+        template: '<event-landing layout="column" layout-fill></event-landing>'//,
+        // resolve: { authService: authenticate }
+      })
       .state('login', {
          url: '/app/login',
          template: '<login layout="column" layout-fill></login>'//,
