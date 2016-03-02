@@ -20,7 +20,8 @@ angular.module('windoApp').directive('datePicker', function () {
       vm.today        = new Date(Date.now());
       vm.currMonth    = vm.today.getMonth();
       vm.currYear     = vm.today.getFullYear();
-      vm.selectedDays = $scope.selectedDays;
+      vm.selectedDays = {};
+      vm.outputDays   = $scope.selectedDays;
 
       // Initialize the current month on the calendar.
       changeMonth(vm.currYear, vm.currMonth);
@@ -35,16 +36,27 @@ angular.module('windoApp').directive('datePicker', function () {
       // "deselected".
       // ---------------------------------------------------------------------//
       vm.selectDay = function (day) {
+        console.log('yay');
         if (!vm.selectedDays[vm.currYear])
           vm.selectedDays[vm.currYear] = {};
 
         if (!vm.selectedDays[vm.currYear][vm.currMonth])
           vm.selectedDays[vm.currYear][vm.currMonth] = {};
 
-        if (!vm.selectedDays[vm.currYear][vm.currMonth][day])
+        if (!vm.outputDays)
+          vm.outputDays = {};
+        var tempDate = new Date(vm.currYear, vm.currMonth, day);
+
+        if (!vm.selectedDays[vm.currYear][vm.currMonth][day]) {
           vm.selectedDays[vm.currYear][vm.currMonth][day] = true;
-        else
-          delete vm.selectedDays[vm.currYear][vm.currMonth][day]
+          vm.outputDays[tempDate.getTime() / 1000] = [];
+        }
+        else {
+          delete vm.selectedDays[vm.currYear][vm.currMonth][day];
+          delete vm.outputDays[tempDate.getTime() / 1000];
+        }
+
+        console.log(vm.outputDays);
       }
 
       // ---------------------------------------------------------------------//
