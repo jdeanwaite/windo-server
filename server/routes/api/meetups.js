@@ -151,7 +151,7 @@ module.exports = {
 // ---------------------------------------------------------------------------//
   remove: (req, res) => {
     console.log('removing meetup: ', req.params.id);
-    User.findOneAndRemove({ _id: req.params.id }, (err, doc) => {
+    Meetup.findOneAndRemove({ _id: req.params.id }, (err, doc) => {
       if (err) {
         res.status(400);
         return res.send(err);
