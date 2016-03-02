@@ -36,7 +36,6 @@ angular.module('windoApp').directive('datePicker', function () {
       // "deselected".
       // ---------------------------------------------------------------------//
       vm.selectDay = function (day) {
-        console.log('yay');
         if (!vm.selectedDays[vm.currYear])
           vm.selectedDays[vm.currYear] = {};
 

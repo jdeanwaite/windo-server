@@ -69,24 +69,26 @@ module.exports = {
         error : "A date hash is required"
       });
 
-    for (year in req.body.dateHash) {
-      for (month in req.body.dateHash[year]) {
-        for (day in req.body.dateHash[year][month]) {
-          var date = new Date(year, month, day);
-          console.log(date);
-          if (date == "Invalid Date")
-            return res.status(400).json({
-              error : "The given dates are invalid"
-            });
+    var validated = false;
 
-          var today = new Date(Date.now());
-          if (month > 11 || month < 0 || day > 31 || day < 0 ||
-              year < today.getFullYear() || year > (today.getFullYear() + 5))
-            return res.status(400).json({
-              error : "The given dates are invalid"
-            });
-        }
-      }
+    for (unixTime in req.body.dateHash) {
+      validate = true;
+      var date = new Date(unixTime * 1000);
+      console.log(unixTime + ", " + date);
+      if (date == "Invalid Date")
+        return res.status(400).json({
+          error : "The given dates are invalid"
+        });
+
+      var today = new Date(Date.now());
+      var month = date.getMonth();
+      var year  = date.getFullYear();
+      var day   = date.getDate();
+      if (month > 11 || month < 0 || day > 31 || day < 0 ||
+          year < today.getFullYear() || year > (today.getFullYear() + 5))
+        return res.status(400).json({
+          error : "The given dates are out of range"
+        });
     }
 
     var newMeetup = new Meetup(req.body);

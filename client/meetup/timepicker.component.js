@@ -8,38 +8,32 @@ angular.module('windoApp').directive('timePicker', function () {
     },
     controller: function ($state, $http, $scope, $document) {
       var vm = this;
-      console.log('workgin tiedfslkfj');
-
       var dayHeaders = $document.find('.day-headers');
+
+      var defaultHours = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                          20, 21, 22, 23];
 
       $document.find('.container').bind('scroll', function () {
         dayHeaders.css('left', -$(this).scrollLeft() + "px");
         // console.log();
       });
 
-      vm.hours = {};
-      vm.days = [];
+      vm.days = {};
+      vm.selectedHours = {};
 
       $scope.$watch('meetup', function() {
         vm.meetup = $scope.meetup;
         var hours = {};
         console.log($scope.meetup);
         if (vm.meetup && vm.meetup.dateHash)
-          for (year in vm.meetup.dateHash)
-            for (month in vm.meetup.dateHash[year])
-              for (day in vm.meetup.dateHash[year][month]) {
-                vm.days.push(new Date(year, month, day));
-                //for (hour in vm.) eventually
-                if (!hours[year])
-                  hours[year] = {};
-                if (!hours[year][month])
-                  hours[year][month] = {};
-                if (!hours[year][month][day])
-                  hours[year][month][day] = {};
+          for (unixTime in vm.meetup.dateHash) {
+            vm.days[unixTime].date = new Date(unixTime * 1000);
 
-                for (var i = 5; i < 24; i++)
-                  hours[year][month][day][i] = false;
-              }
+            if (vm.meetup.dateHash[unixTime].length > 0)
+              vm.days[unixTime].hours = vm.meetup.dateHash[unixTime];
+            else
+              vm.days[unixTime].hours =
+          }
 
         vm.hours = hours;
         // console.log("hey it chagnes");

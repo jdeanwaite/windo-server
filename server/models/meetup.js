@@ -20,6 +20,14 @@ var MeetupSchema = new Schema({
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
     dateHash:   { type: Mixed, required: true   },
+    // dateHash:  [{
+    //   unixTime: { type: Number, required: true  },
+    //   availableHours: { type: [Number] },
+    //   submitTimes: [{
+    //     _userId: { type: String, required: true },
+    //     hours:   { type: []}
+    //   }]
+    // }],
     location:   { type: String, required: false },
     invitees:   { type: Array, default: []      }
 });
