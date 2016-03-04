@@ -8,6 +8,7 @@ angular.module('windoApp').directive('create', function () {
 
       vm.invitees = [];
       vm.eventName = "";
+      vm.location = "";
       vm.test = vm.eventName;
       vm.selectedDays = {};
 
@@ -27,7 +28,8 @@ angular.module('windoApp').directive('create', function () {
         // create the meetup object to be passed to the server
         var meetup = {
           name: vm.eventName,
-          dateHash: dateHash
+          dateHash: dateHash,
+          location: vm.location || ""
           // invitees: vm.invitees TODO: add invitees
         };
 
