@@ -54,16 +54,35 @@
   border-radius: 0%;
   margin: 0;
   padding: 0;
+  text-transform: none;
 }
 
 .hour-button.selected {
-  background-color: #FF4081;
-  color: rgba(255, 255, 255, .87);
+  color: rgba(0, 0, 0, .67);
 }
 
-.hour-button.selected:hover {
-  background-color: #FF80AB;
-  color: rgba(255, 255, 255, .87);
+.hour-button.selected.am {
+  background-color: rgb(255, 224, 130);
+}
+
+.hour-button.selected.am:hover {
+  background-color: rgba(255, 224, 130, .6);
+}
+
+.hour-button.selected.pm {
+  background-color: rgb(179, 229, 252);
+}
+
+.hour-button.selected.pm:hover {
+  background-color: rgba(179, 229, 252, .6);
+}
+
+.hour-button.selected.night {
+  background-color: rgb(159, 168, 218);
+}
+
+.hour-button.selected.night:hover {
+  background-color: rgba(159, 168, 218, .6);
 }
 
 .am {
@@ -93,24 +112,24 @@
       <span class="day-text">{{day | date: "EEE" | uppercase}}</span>
     </div>
   </div> -->
-  <div class="container" layout="column" layout-align="start center">
-    <!-- <div class="parent" ng-repeat="day in timePicker.days"> -->
-      <div layout="column" class="day-column center" ng-repeat="day in timePicker.days" layout-align="start start" flex="noshrink">
+  <div class="container" layout="column" layout-align="center center">
+    <!--flex-sm="50" flex-xs="100" flex-gt-sm="100"-->
+      <div layout="column" class="day-column center" ng-repeat="day in timePicker.days" layout-align="start start">
         <div layout="column" layout-align="center center">
           <!--<span class="day-number">{{day.date | date: "d"}}</span>-->
           <!--<span class="day-text">{{day.date | date: "EEE" | uppercase}}</span>-->
-          <span>{{ day.date | date}}</span>
+          <span><b>{{ day.date | date : "EEEE"}}</b> {{ day.date | date}}</span>
         </div>
         <!--<table class="table">-->
           <!--<tbody>-->
             <!--<tr ng-repeat="(hour, selected) in day.hours track by $index">-->
               <!--<td class="center">-->
                 <div class="content" layout="row"  layout-wrap>
-                  <md-button flex="noshrink" ng-repeat="hour in day.hours track by $index"
+                  <md-button ng-repeat="(hour, selected) in day.hours track by $index"
                              class="hour-button"
-                             ng-class="{selected:selected, am:(hour < 12), pm:(hour >= 12 && hour < 19), night:(hour >= 19)}"
+                             ng-class="{selected:(selected > 0), am:(hour < 12), pm:(hour >= 12 && hour < 19), night:(hour >= 19)}"
                              ng-click="timePicker.selectHour(day, hour)">
-                    {{ day.date.setHours(hour) | date: "h"}}
+                    {{ day.date.setHours(hour) | date: "h"}}{{ (hour < 12) ? "a" : "p" }}
                   </md-button>
                 </div>
               <!--</td>-->

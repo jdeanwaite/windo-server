@@ -1,6 +1,10 @@
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
 <style>
+  md-content.md-purple-theme {
+    background-color: rgba(246, 246, 246, 1);
+  }
+
   .main-toolbar {
     height: 156px;
   }
@@ -27,6 +31,18 @@
   .timepicker {
     margin-top: 20px;
   }
+
+  .submit-btn {
+    min-height: 60px;
+  }
+
+  .max-width {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFFFF;
+  }
 </style>
 
 <md-toolbar md-theme="purple" class="main-toolbar md-whiteframe-4dp md-hue-2">
@@ -46,15 +62,28 @@
     <span flex="5"></span>
     <div class="meetup-info" layout="column">
       <h2>{{ submitTimes.meetup.name }}</h2>
-      <h3>{{ submitTimes.startDay | date}} <span ng-show="submitTimes.lastDay"> - </span> {{ submitTimes.lastDay | date }}</h3>
+      <h3>
+        {{submitTimes.startDay | date : "EEE"}} {{ submitTimes.startDay | date}}
+        <span ng-show="submitTimes.lastDay">
+          - {{ submitTimes.lastDay | date : "EEE" }}
+          {{ submitTimes.lastDay | date }}
+        </span>
+      </h3>
       <h3 ng-show="submitTimes.meetup.location">{{ submitTimes.meetup.location }}</h3>
+    </div>
+    <div flex="noshrink" layout="row" layout-align="end end">
+      <md-button class="md-icon-button">
+        <md-icon class="material-icons">more_vert</md-icon>
+      </md-button>
     </div>
   </div>
 </md-toolbar>
 
-<md-content md-theme="purple" layout="column" flex layout-padding>
-  <div layout="column" flex="noshrink">
-    <time-picker class="timepicker" layout="column" flex date-hash="submitTimes.meetup.dateHash"></time-picker>
-    <md-button class="md-primary md-raised">Submit Times</md-button>
+<md-content md-theme="purple" layout="column" flex layout-padding >
+  <div layout="column" flex="noshrink" layout-align="start center">
+    <div class="md-whiteframe-2dp max-width" layout="column" layout-padding>
+      <time-picker class="timepicker" layout="column" flex date-hash="submitTimes.meetup.dateHash"></time-picker>
+      <md-button class="md-primary md-raised submit-btn">Submit Times</md-button>
+    </div>
   </div>
 </md-content>
