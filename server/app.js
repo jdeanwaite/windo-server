@@ -48,7 +48,7 @@ app.use(session({
   secret: config.sessionSecret,
   resave: false,
   saveUninitialized: false,
-  store: new RedisStore({ // For session persistance! If we restart the server the session can still be active.
+  store: new RedisStore({ // For session persistence! If we restart the server the session can still be active.
     host: 'localhost',
     port: 6379
   }),
@@ -115,7 +115,7 @@ app.get('/login/status', function(req, res) {
 app.get('/logout', function(req, res) {
   req.logout();
   res.json({success: true});
-})
+});
 
 // ---------------------------------------------------------------------------//
 // Route Setup

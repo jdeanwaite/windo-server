@@ -16,7 +16,7 @@ angular.module('windoApp').directive('dashboard', function () {
       });
 
       vm.goToMeetup = function (id) {
-        $state.go('submitTimes', {id: id});
+        $state.go('eventLanding', {id: id});
       }
 
       vm.deleteMeetup = function (id) {

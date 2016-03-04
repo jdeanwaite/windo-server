@@ -35,5 +35,11 @@ Database:
       }
     ]
 
+dateHash: {
+  23958340958: [12, 13, 14, 15],
+  23958340958: [12, 13, 14, 15],
+  23958340958: [12, 13, 14, 15]
+}
+
 for every person that submits:
   object with dates and times for that day and weights for the times.

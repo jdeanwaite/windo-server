@@ -18,14 +18,14 @@ angular.module('windoApp')
         template: '<create layout="column" layout-fill></create>',
         resolve: { authService: authenticate }
       })
+      .state('eventLanding', {
+        url: '/app/meetup/:id',
+        template: '<event-landing layout="column" layout-fill></event-landing>'//,
+        // resolve: { authService: authenticate }
+      })
       .state('submitTimes', {
         url: '/app/meetup/:id/submit',
         template: '<submit-times layout="column" layout-fill></submit-times>'//,
-        // resolve: { authService: authenticate }
-      })
-      .state('eventLanding', {
-        url: '/app/meetup/:id/event',
-        template: '<event-landing layout="column" layout-fill></event-landing>'//,
         // resolve: { authService: authenticate }
       })
       .state('login', {

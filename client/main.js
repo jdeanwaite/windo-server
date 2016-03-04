@@ -8,9 +8,31 @@ var app = angular.module('windoApp', [
 
 angular.module('windoApp').config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-  .primaryPalette('indigo')
-  .accentPalette('pink')
-  .warnPalette('deep-orange');
+    .primaryPalette('orange', {
+      'hue-2': '700'
+    })
+    .accentPalette('light-blue')
+    .warnPalette('red');
+
+  $mdThemingProvider.theme('teal')
+    .primaryPalette('teal')
+    .accentPalette('pink')
+    .warnPalette('deep-orange');
+
+  $mdThemingProvider.theme('pink')
+      .primaryPalette('pink', {
+        'hue-2': '700'
+      })
+      .accentPalette('indigo')
+      .warnPalette('indigo');
+
+  $mdThemingProvider.theme('purple')
+      .primaryPalette('deep-purple', {
+        'hue-2': '600'
+      })
+      .accentPalette('pink')
+      .warnPalette('pink');
+
 });
 
 angular.module('windoApp').controller(function($scope) {
